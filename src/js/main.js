@@ -1,10 +1,11 @@
 // --- Modals Bootstrap ---
+
  const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
  const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
 
  // --- Formulaires ---
  const addForm = document.getElementById('form-reservation');
-// const editForm = document.getElementById('editReservationForm');
+ const editForm = document.getElementById('editReservationForm');
 
  // --- Variables globales ---
  let daySelectionne = null;
