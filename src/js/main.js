@@ -1,6 +1,6 @@
 // --- Modals Bootstrap ---
  const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
- //const editModal = new bootstrap.Modal(document.getElementById('editReservationModal'));
+ const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
 
  // --- Formulaires ---
  const addForm = document.getElementById('form-reservation');

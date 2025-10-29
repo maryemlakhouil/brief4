@@ -95,53 +95,53 @@
 
   <!-- Modal de modification / Seppression -->
    
-   <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editModalTitle" aria-hidden="true">
+   <div class="modal fade" id="modifierReservation" tabindex="-1" aria-labelledby="modifierModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
 
         <div class="modal-header">
-          <h5 class="modal-title" id="editModalTitle">Modifier la réservation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="modifierModal">Modifier la réservation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <form id="editReservationForm">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="editName" class="form-label">Nom du client</label>
-              <input type="text" class="form-control" id="editName" required>
+                <label for="editName" class="form-label">Nom du client</label>
+                <input type="text" class="form-control" id="editName" required>
             </div>
 
             <div class="mb-3">
-              <label for="editDebut" class="form-label">Heure de début</label>
-              <input type="time" id="editDebut" class="form-control" required>
+                <label for="editDebut" class="form-label">Heure de début</label>
+                <input type="time" id="editDebut" class="form-control" required>
             </div>
 
             <div class="mb-3">
-              <label for="editFin" class="form-label">Heure de fin</label>
-              <input type="time" id="editFin" class="form-control" required>
+                <label for="editFin" class="form-label">Heure de fin</label>
+                <input type="time" id="editFin" class="form-control" required>
             </div>
 
             <div class="mb-3">
-              <label for="editNbPersonne" class="form-label">Nombre de personnes</label>
-              <input type="number" id="editNbPersonne" class="form-control" required>
+                <label for="editNbPersonne" class="form-label">Nombre de personnes</label>
+                <input type="number" id="editNbPersonne" class="form-control" required>
             </div>
 
             <div class="mb-3">
-              <label for="editTypeReservation" class="form-label">Type de réservation</label>
-              <select id="editTypeReservation" class="form-select" required>
-                <option value="">Choisir...</option>
-                <option value="standard">Standard</option>
-                <option value="vip">VIP</option>
-                <option value="groupe">Groupe</option>
-              </select>
+                <label for="editTypeReservation" class="form-label">Type de réservation</label>
+                <select id="editTypeReservation" class="form-select" required>
+                        <option value="">Choisir...</option>
+                        <option value="standard">Standard</option>
+                        <option value="vip">VIP</option>
+                        <option value="groupe">Groupe</option>
+                </select>
             </div>
           </div>
 
-          <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-danger" id="deleteReservation">Supprimer</button>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-danger" id="SupReservation">Supprimer</button>
             <div>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-              <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
           </div>
         </form>
