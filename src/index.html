@@ -2,94 +2,97 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Gourmet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Gourmet</title>
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-  <script src="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="container py-4">
 
-  <h2 class="text-center mb-4">Novembre 2018</h2>
+    <h2 class="text-center mb-4">Novembre 2018</h2>
 
   <!-- En-têtes des jours -->
-  <div class="calendar fw-bold">
-    <div>Lundi</div>
-    <div>Mardi</div>
-    <div>Mercredi</div>
-    <div>Jeudi</div>
-    <div>Vendredi</div>
-    <div class="inactive">Samedi</div>
-    <div class="inactive">Dimanche</div>
-  </div>
+
+    <div class="calendar fw-bold">
+        <div>Lundi</div>
+        <div>Mardi</div>
+        <div>Mercredi</div>
+        <div>Jeudi</div>
+        <div>Vendredi</div>
+        <div class="inactive">Samedi</div>
+        <div class="inactive">Dimanche</div>
+    </div>
 
   <!-- Jours du calendrier -->
-  <div class="calendar mt-2">
-    <div class="day" id="Lundi"></div>
-    <div class="day" id="Mardi"></div>
-    <div class="day" id="Mercredi"></div>
-    <div class="day" id="Jeudi"></div>
-    <div class="day" id="Vendredi"></div>
-    <div class="day inactive" id="Samedi"></div>
-    <div class="day inactive" id="Dimanche"></div>
-  </div>
 
-  <!-- Modal d’ajout -->
-  <!-- <div class="modal fade" id="AjoutReservation" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTitle">Ajouter une réservation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <form id="form-reservation">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="name" class="form-label">Nom du client</label>
-              <input type="text" class="form-control" id="name" placeholder="Maryem" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="Debut" class="form-label">Heure de début</label>
-              <input type="time" id="Debut" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="fin" class="form-label">Heure de fin</label>
-              <input type="time" id="fin" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="nbpersonne" class="form-label">Nombre de personnes</label>
-              <input type="number" id="nbpersonne" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="typeReservation" class="form-label">Type de réservation</label>
-              <select id="typeReservation" class="form-select" required>
-                <option value="">Choisir...</option>
-                <option value="standard">Standard</option>
-                <option value="vip">VIP</option>
-                <option value="groupe">Groupe</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-success">Ajouter</button>
-          </div>
-        </form>
-      </div>
+    <div class="calendar mt-2">
+        <div class="day" id="Lundi"></div>
+        <div class="day" id="Mardi"></div>
+        <div class="day" id="Mercredi"></div>
+        <div class="day" id="Jeudi"></div>
+        <div class="day" id="Vendredi"></div>
+        <div class="day inactive" id="Samedi"></div>
+        <div class="day inactive" id="Dimanche"></div>
     </div>
-  </div> -->
+
+  <!-- Modal d’ajouter Une réservation  -->
+
+    <div class="modal fade" id="AjoutReservation" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Ajouter une réservation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="form-reservation">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nom du client</label>
+                    <input type="text" class="form-control" id="name"  required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Debut" class="form-label">Heure de début</label>
+                    <input type="time" id="Debut" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fin" class="form-label">Heure de fin</label>
+                    <input type="time" id="fin" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nbpersonne" class="form-label">Nombre de personnes</label>
+                    <input type="number" id="nbpersonne" class="form-control" min=0 required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="typeReservation" class="form-label">Type de réservation</label>
+                    <select id="typeReservation" class="form-select" required>
+                        <option value="">Choisir...</option>
+                        <option value="standard">Standard</option>
+                        <option value="vip">VIP</option>
+                        <option value="groupe">Groupe</option>
+                    </select>
+                </div>
+            </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success">Ajouter</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
 
   <!-- Modal de modification -->
   <!-- <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editModalTitle" aria-hidden="true">
