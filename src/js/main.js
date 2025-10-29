@@ -8,6 +8,7 @@
  const editForm = document.getElementById('editReservationForm');
 
  // --- Variables globales ---
+ 
  let daySelectionne = null;
  let ReservationSelectionne = null;
 

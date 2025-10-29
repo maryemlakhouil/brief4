@@ -3,12 +3,20 @@ body{
     background-color:hsl(0, 0%, 98%);
 }
 
+h2 {
+    background: #6b8e23;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     margin-top: 20px;
-    background-color: antiquewhite;
+    background-color: rgb(193, 241, 150);
     height: 50px;
 }
 .day {
@@ -20,7 +28,8 @@ body{
 }
 
 .day:hover {
-    background-color: #e9ecef;
+    background: hsl(80, 68%, 70%);
+    transform: scale(1.02);
 }
 
 .inactive {
@@ -38,11 +47,16 @@ body{
 }
 
 .reservation.vip {
-    background-color: #dc3545;
+    background-color: #e5707b;
 } 
 .reservation.standard {
-    background-color: #198754; 
+    background-color: #1fe75e; 
 } 
 .reservation.groupe { 
-    background-color: #0d6efd;
+    background-color: #3a7ce0;
 } 
+
+.modal-content {
+  border-radius: 10px;
+  animation: fadeIn .25s ease-in-out;
+}
