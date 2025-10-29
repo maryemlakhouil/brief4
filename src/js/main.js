@@ -1,77 +1,82 @@
 // --- Modals Bootstrap ---
  const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
- const editModal = new bootstrap.Modal(document.getElementById('editReservationModal'));
+ //const editModal = new bootstrap.Modal(document.getElementById('editReservationModal'));
 
-// // --- Formulaires ---
-// const addForm = document.getElementById('form-reservation');
+ // --- Formulaires ---
+ const addForm = document.getElementById('form-reservation');
 // const editForm = document.getElementById('editReservationForm');
 
-// // --- Variables globales ---
-// let selectedDay = null;
-// let selectedReservation = null;
+ // --- Variables globales ---
+ let daySelectionne = null;
+ let ReservationSelectionne = null;
 
-// // --- Sélection des jours actifs ---
-// const days = document.querySelectorAll('.day:not(.inactive)');
+// --- Sélection des jours actifs  ---
+ const days = document.querySelectorAll('.day:not(.inactive)');
 
-// // --- Ouvrir le modal d’ajout sur clic d’un jour ---
-// days.forEach(day => {
-//   day.addEventListener('click', () => {
-//     selectedDay = day;
-//     addModal.show();
-//   });
-// });
+// --- Ouvrir le modal d’ajout sur clic d’un jour Sans utilisation de boutton ---
+days.forEach(day => {
+  day.addEventListener('click', () => {
+    daySelectionne = day;
+    addModal.show();
+  });
+});
 
-// // --- Soumission du formulaire d’ajout ---
-// addForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
+ // --- l'Envoi  du formulaire d’ajout ---
 
-//   // Récupération des données
-//   const name = document.getElementById('name').value.trim();
-//   const start = document.getElementById('Debut').value;
-//   const end = document.getElementById('fin').value;
-//   const people = document.getElementById('nbpersonne').value;
-//   const type = document.getElementById('typeReservation').value;
+addForm.addEventListener('submit', (e) => {
+   e.preventDefault();
 
-//   if (!name || !start || !end || !people || !type) {
-//     alert("Veuillez remplir tous les champs !");
-//     return;
-//   }
+   // Récupération des données
+  const name = document.getElementById('name').value.trim();
+  const Debut = document.getElementById('Debut').value;
+  const fin = document.getElementById('fin').value;
+  const personne = document.getElementById('nbpersonne').value;
+  const type = document.getElementById('typeReservation').value;
 
-//   // Création du bloc réservation
-//   const reservation = document.createElement('div');
-//   reservation.classList.add('reservation', type);
-//   reservation.innerHTML = `
-//     <strong>${name}</strong><br>
-//     ${start} - ${end}<br>
-//     ${people} pers.
-//   `;
+  if (!name || !Debut || !fin || !personne || !type) {
+    alert("Veuillez remplir tous les champs svp !");
+    return;
+  }
 
-//   // Sauvegarde dans dataset
-//   reservation.dataset.name = name;
-//   reservation.dataset.start = start;
-//   reservation.dataset.end = end;
-//   reservation.dataset.people = people;
-//   reservation.dataset.type = type;
+  // Création du bloc réservation
 
-//   // Clic sur la réservation → ouvrir le modal d'édition
-//   reservation.addEventListener('click', (e) => {
-//     e.stopPropagation(); // éviter de rouvrir le modal d’ajout
-//     openEditModal(reservation);
-//   });
+  const reservation = document.createElement('div');
+  reservation.classList.add('reservation', type);
+  reservation.innerHTML = `Name :
+    <strong>${name}</strong><br>
+    Date Reservation :
+    ${Debut} - ${fin}<br>
+    Nombre de pers :${personne} .
+  `;
 
-//   selectedDay.appendChild(reservation);
+  // Sauvegarde dans dataset
+
+  reservation.dataset.name = name;
+  reservation.dataset.Debut = Debut;
+  reservation.dataset.fin = fin;
+  reservation.dataset.personne = personne;
+  reservation.dataset.type = type;
+
+  // Clic sur la réservation → ouvrir le modal d'édition
+
+  reservation.addEventListener('click', (e) => {
+    e.stopPropagation(); // éviter de rouvrir le modal d’ajout 
+    openEditModal(reservation);
+  });
+
+//   daySelectionne.appendChild(reservation);
 //   addForm.reset();
 //   addModal.hide();
 // });
 
 // // --- Ouvrir le modal d’édition ---
 // function openEditModal(reservation) {
-//   selectedReservation = reservation;
+//   ReservationSelectionne = reservation;
 
 //   document.getElementById('editName').value = reservation.dataset.name;
-//   document.getElementById('editDebut').value = reservation.dataset.start;
-//   document.getElementById('editFin').value = reservation.dataset.end;
-//   document.getElementById('editNbPersonne').value = reservation.dataset.people;
+//   document.getElementById('editDebut').value = reservation.dataset.Debut;
+//   document.getElementById('editFin').value = reservation.dataset.fin;
+//   document.getElementById('editNbPersonne').value = reservation.dataset.personne;
 //   document.getElementById('editTypeReservation').value = reservation.dataset.type;
 
 //   editModal.show();
@@ -81,17 +86,17 @@
 // editForm.addEventListener('submit', (e) => {
 //   e.preventDefault();
 
-//   selectedReservation.dataset.name = document.getElementById('editName').value.trim();
-//   selectedReservation.dataset.start = document.getElementById('editDebut').value;
-//   selectedReservation.dataset.end = document.getElementById('editFin').value;
-//   selectedReservation.dataset.people = document.getElementById('editNbPersonne').value;
-//   selectedReservation.dataset.type = document.getElementById('editTypeReservation').value;
+//   ReservationSelectionne.dataset.name = document.getElementById('editName').value.trim();
+//   ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
+//   ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
+//   ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
+//   ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
 
-//   selectedReservation.className = `reservation ${selectedReservation.dataset.type}`;
-//   selectedReservation.innerHTML = `
-//     <strong>${selectedReservation.dataset.name}</strong><br>
-//     ${selectedReservation.dataset.start} - ${selectedReservation.dataset.end}<br>
-//     ${selectedReservation.dataset.people} pers.
+//   ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
+//   ReservationSelectionne.innerHTML = `
+//     <strong>${ReservationSelectionne.dataset.name}</strong><br>
+//     ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
+//     ${ReservationSelectionne.dataset.personne} pers.
 //   `;
 
 //   editModal.hide();
@@ -100,7 +105,7 @@
 // // --- Supprimer la réservation ---
 // document.getElementById('deleteReservation').addEventListener('click', () => {
 //   if (confirm("Voulez-vous vraiment supprimer cette réservation ?")) {
-//     selectedReservation.remove();
+//     ReservationSelectionne.remove();
 //     editModal.hide();
 //   }
 // });
