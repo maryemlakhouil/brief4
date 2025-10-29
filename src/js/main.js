@@ -60,14 +60,14 @@ addForm.addEventListener('submit', (e) => {
   // Clic sur la réservation → ouvrir le modal d'édition
 
   reservation.addEventListener('click', (e) => {
-    e.stopPropagation(); // éviter de rouvrir le modal d’ajout 
+    e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
     openEditModal(reservation);
   });
 
-//   daySelectionne.appendChild(reservation);
-//   addForm.reset();
-//   addModal.hide();
-// });
+  daySelectionne.appendChild(reservation);
+  addForm.reset();
+  addModal.hide();
+});
 
 // // --- Ouvrir le modal d’édition ---
 // function openEditModal(reservation) {
