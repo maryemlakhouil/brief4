@@ -60,3 +60,13 @@ h2 {
   border-radius: 10px;
   animation: fadeIn .25s ease-in-out;
 }
+#search {
+  border-radius: 6px;
+  border: 2px solid #5E8C31;
+  transition: 0.2s;
+}
+
+#search:focus {
+  box-shadow: 0 0 6px rgba(94, 140, 49, 0.5);
+  border-color: #3b5d24;
+}
