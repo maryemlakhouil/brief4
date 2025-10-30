@@ -1,16 +1,17 @@
 
 body{
     background-color:hsl(0, 0%, 98%);
+    overflow: hidden;
 }
 
-h2 {
+.ziti {
     background: #6b8e23;
     color: white;
     padding: 1rem;
     border-radius: 10px;
-    text-transform: uppercase;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

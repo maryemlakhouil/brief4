@@ -17,6 +17,7 @@
  const days = document.querySelectorAll('.day:not(.inactive)');
 
 // --- Ouvrir le modal d’ajout sur clic d’un jour Sans utilisation de boutton ---
+
 days.forEach(day => {
   day.addEventListener('click', () => {
     daySelectionne = day;
@@ -49,7 +50,7 @@ addForm.addEventListener('submit', (e) => {
     <strong>${name}</strong><br>
     Date Reservation :
     ${Debut} - ${fin}<br>
-    Nombre de pers :${personne} .
+    Nombre de personne :${personne} .
   `;
 
   // Sauvegarde dans dataset
@@ -86,38 +87,3 @@ addForm.addEventListener('submit', (e) => {
     }
 
 // --- Sauvegarder les modifications ---
-editForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
-  ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
-  ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
-  ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
-  ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
-
-  ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-  ReservationSelectionne.innerHTML = `Noveau name
-    <strong>${ReservationSelectionne.dataset.name}</strong><br>
-    ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
-    ${ReservationSelectionne.dataset.personne} personne.
-  `;
-
-  editModal.hide();
-});
-
- // --- Supprimer la réservation ---
- document.getElementById('SupReservation').addEventListener('click', () => {
-  if (confirm("Voulez-vous vraiment supprimer cette réservation  ?")) {
-        ReservationSelectionne.remove();
-        editModal.hide();
-  }
-});
-RechercheInput.addEventListener("keyup", () => {
-    const term = RechercheInput.value.toLowerCase();
-    const reservations = document.querySelectorAll(".reservation");
-
-    reservations.forEach(res => {
-        const text = res.textContent.toLowerCase();
-        res.style.display = text.includes(term) ? "block" : "none";
-    });
-});
