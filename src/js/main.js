@@ -56,11 +56,7 @@ addForm.addEventListener('submit', (e) => {
         Nombre de personne :${personne} .
     `;
 
-
-
-
-    
-  // Sauvegarde dans dataset
+  // Sauvegarde dans dataset 
 
   reservation.dataset.name = name;
   reservation.dataset.Debut = Debut;
@@ -68,12 +64,13 @@ addForm.addEventListener('submit', (e) => {
   reservation.dataset.personne = personne;
   reservation.dataset.type = type;
 
+
   // Clic sur la réservation → ouvrir le modal d'édition
 
-  reservation.addEventListener('click', (e) => {
-    e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
-    openEditModal(reservation);
-  });
+//   reservation.addEventListener('click', (e) => {
+//     e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
+//     openEditModal(reservation);
+//   });
 
   jourSelectionne.appendChild(reservation);
   addForm.reset();
