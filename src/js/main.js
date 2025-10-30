@@ -1,12 +1,14 @@
-// --- Modals Bootstrap ---
+// ---  Declaration des Modals Bootstrap ---
 
  const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
  const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
  const RechercheInput = document.getElementById("search");
 
- // --- Formulaires ---
+ // ---Declaration des  Formulaires ---
+
  const addForm = document.getElementById('form-reservation');
  const editForm = document.getElementById('editReservationForm');
+
 
  // --- Variables globales ---
 
@@ -46,7 +48,7 @@ addForm.addEventListener('submit', (e) => {
 
   const reservation = document.createElement('div');
   reservation.classList.add('reservation', type);
-  reservation.innerHTML = `Name :
+  reservation.innerHTML = `Non :
     <strong>${name}</strong><br>
     Date Reservation :
     ${Debut} - ${fin}<br>
