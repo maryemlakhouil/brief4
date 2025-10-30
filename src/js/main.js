@@ -110,3 +110,4 @@ addForm.addEventListener('submit', (e) => {
 
     editModal.hide();
     });
+    
