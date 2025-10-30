@@ -111,3 +111,5 @@ addForm.addEventListener('submit', (e) => {
     editModal.hide();
     });
     
+    // --- Suppremier une reservation ou bien annuller 
+    
