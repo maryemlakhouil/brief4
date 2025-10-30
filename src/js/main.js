@@ -2,7 +2,7 @@
 
  const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
  const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
- const RechercheInput = document.getElementById("search");
+ const RechercheInput = document.getElementById('search');
 
  // ---Declaration des  Formulaires ---
 
@@ -80,14 +80,14 @@ addForm.addEventListener('submit', (e) => {
  // --- Ouvrir le modal de modification avec les valeurs li 3amart fi ajout  ---
 
     function openEditModal(reservation) {
+        editModal.show();
         ReservationSelectionne = reservation;
-        document.getElementById('ModifNon').value = reservation.dateset.name;
+        document.getElementById('ModifNon').value = reservation.dataset.name;
         document.getElementById('editDebut').value = reservation.dataset.Debut;
-        document.getElementById('editfin').value = reservation.dataset.fin;
+        document.getElementById('editFin').value = reservation.dataset.fin;
         document.getElementById('editNbPersonne').value = reservation.dataset.personne;
         document.getElementById('editTypeReservation').value =reservation.dataset.type;
 
-       editModal.show();
     }
 
 // --- Sauvgarder les modifications ------
