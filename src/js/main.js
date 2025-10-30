@@ -12,19 +12,20 @@
 
  // --- Variables globales ---
 
- let daySelectionne = null;
+ let jourSelectionne = null;
  let ReservationSelectionne = null;
 
-// --- Sélection des jours actifs  ---
+// --- Sélection des jours actifs (Lundi - Vendredi) ---
+
  const days = document.querySelectorAll('.day:not(.inactive)');
 
 // --- Ouvrir le modal d’ajout sur clic d’un jour Sans utilisation de boutton ---
 
 days.forEach(day => {
-  day.addEventListener('click', () => {
-    daySelectionne = day;
-    addModal.show();
-  });
+    day.addEventListener('click' , () =>{
+        jourSelectionne = day ;
+        addModal.show();
+    });
 });
 
  // --- l'Envoi  du formulaire d’ajout ---
@@ -70,7 +71,7 @@ addForm.addEventListener('submit', (e) => {
     openEditModal(reservation);
   });
 
-  daySelectionne.appendChild(reservation);
+  jourSelectionne.appendChild(reservation);
   addForm.reset();
   addModal.hide();
 });
