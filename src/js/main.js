@@ -92,21 +92,21 @@ addForm.addEventListener('submit', (e) => {
 
 // --- Sauvgarder les modifications ------
 
-editForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+    editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
-  ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
-  ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
-  ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
-  ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
+    ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
+    ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
+    ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
+    ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
+    ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
 
-  ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-  ReservationSelectionne.innerHTML = `Noveau name
-    <strong>${ReservationSelectionne.dataset.name}</strong><br>
-    ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
-    ${ReservationSelectionne.dataset.personne} personne.
-  `;
+    ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
+    ReservationSelectionne.innerHTML = `Noveau name
+        <strong>${ReservationSelectionne.dataset.name}</strong><br>
+        ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
+        ${ReservationSelectionne.dataset.personne} personne.
+    `;
 
-  editModal.hide();
-});
+    editModal.hide();
+    });
