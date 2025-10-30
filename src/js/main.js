@@ -27,35 +27,39 @@ days.forEach(day => {
         addModal.show();
     });
 });
-
- // --- l'Envoi  du formulaire d’ajout ---
+ 
+ // --- Remplire la form et  l'Envoi  du formulaire d’ajout ---
 
 addForm.addEventListener('submit', (e) => {
-   e.preventDefault();
+   e.preventDefault(); // ----> annule l'événement s'il est annulable
 
-   // Récupération des données
-  const name = document.getElementById('name').value.trim();
-  const Debut = document.getElementById('Debut').value;
-  const fin = document.getElementById('fin').value;
-  const personne = document.getElementById('nbpersonne').value;
-  const type = document.getElementById('typeReservation').value;
+   const name = document.getElementById('name').value.trim();
+   const Debut = document.getElementById('Debut').value;
+   const fin = document.getElementById('fin').value;
+   const personne = document.getElementById('nbpersonne').value;
+   const type = document.getElementById('typeReservation').value;
 
-  if (!name || !Debut || !fin || !personne || !type) {
-    alert("Veuillez remplir tous les champs svp !");
-    return;
-  }
+    if (!name || !Debut || !fin || !personne || !type) {
+        alert("Veuillez remplir tous les champs svp !");
+        return;
+    }
 
-  // Création du bloc réservation
+  // Création du bloc réservation (Affichage) 
+    // innerHTML = permet la manipulation dynamique du contenu HTML d'un élément.
 
-  const reservation = document.createElement('div');
-  reservation.classList.add('reservation', type);
-  reservation.innerHTML = `Non :
-    <strong>${name}</strong><br>
-    Date Reservation :
-    ${Debut} - ${fin}<br>
-    Nombre de personne :${personne} .
-  `;
+    const reservation = document.createElement('div');
+    reservation.classList.add('reservation', type);
+    reservation.innerHTML = `Nom :
+        <strong>${name}</strong><br>
+        Date Reservation :
+        ${Debut} - ${fin}<br>
+        Nombre de personne :${personne} .
+    `;
 
+
+
+
+    
   // Sauvegarde dans dataset
 
   reservation.dataset.name = name;
