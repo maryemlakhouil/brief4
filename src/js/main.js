@@ -83,7 +83,7 @@ addForm.addEventListener('submit', (e) => {
         document.getElementById('editNbPersonne').value = reservation.dataset.personne;
         document.getElementById('editTypeReservation').value =reservation.dataset.type;
 
-        editModal.show();
+       editModal.show();
     }
 
-// --- Sauvegarder les modifications ---
+// --- Sauvgarder les modifications ------
