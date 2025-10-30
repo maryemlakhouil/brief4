@@ -112,4 +112,16 @@ addForm.addEventListener('submit', (e) => {
     });
     
     // --- Suppremier une reservation ou bien annuller 
-    
+
+    document.getElementById('SupReservation').addEventListener('click' ,() => {
+        
+
+
+    })
+
+    document.getElementById('SupReservation').addEventListener('click', () => {
+  if (confirm("Voulez-vous vraiment supprimer cette réservation  ?")) {
+        ReservationSelectionne.remove();
+        editModal.hide();
+  }
+});
