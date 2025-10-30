@@ -67,10 +67,10 @@ addForm.addEventListener('submit', (e) => {
 
   // Clic sur la réservation → ouvrir le modal d'édition
 
-//   reservation.addEventListener('click', (e) => {
-//     e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
-//     openEditModal(reservation);
-//   });
+  reservation.addEventListener('click', (e) => {
+    e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
+    openEditModal(reservation);
+  });
 
   jourSelectionne.appendChild(reservation);
   addForm.reset();
