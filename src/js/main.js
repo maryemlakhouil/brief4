@@ -78,9 +78,9 @@ addForm.addEventListener('submit', (e) => {
 });
 
  // --- Ouvrir le modal de modification ---
+
     function openEditModal(reservation) {
         ReservationSelectionne = reservation;
-
         document.getElementById('ModifNon').value = reservation.dateset.name;
         document.getElementById('editDebut').value = reservation.dataset.Debut;
         document.getElementById('editfin').value = reservation.dataset.fin;
