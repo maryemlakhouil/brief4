@@ -73,8 +73,8 @@ addForm.addEventListener('submit', (e) => {
   });
 
   jourSelectionne.appendChild(reservation);
-  addForm.reset();
-  addModal.hide();
+  addForm.reset(); // Réinitialise les champs du formulaire addForm
+  addModal.hide(); // fermer la forme de l'ajout 
 });
 
  // --- Ouvrir le modal de modification ---
