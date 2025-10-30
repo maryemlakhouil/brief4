@@ -19,57 +19,53 @@
         <h2 class="mb-0">Novembre 2025</h2>
 
         <!-- Barre de recherche -->
-         <div class="d-flex">
-        <input type="text" id="search" class="form-control w-25" placeholder="Rechercher une réservation...">
-        <button type="submit" class="btn">Rechercher</button>
+         <div class="d-flex gap-2">
+        <input type="text" id="search" class="form-control flex-grow-1" placeholder="Rechercher une réservation...">
+        <button type="submit" class="btn btn-light search-btn">Rechercher</button>
         </div>
     </div>
 
 
   <!-- En-têtes des jours -->
 
-  <div class="Time">
-    <div class="time-col">
-            <div class="hour">09:00</div>
-            <div class="hour">10:00</div>
-            <div class="hour">11:00</div>
-            <div class="hour">12:00</div>
-            <div class="hour">13:00</div>
-            <div class="hour">14:00</div>
-            <div class="hour">15:00</div>
-            <div class="hour">16:00</div>
-            <div class="hour">17:00</div>
-            <div class="hour">18:00</div>
-    </div>
 
-    <div class="calendar fw-bold">
-        <div>Lundi</div>
-        <div>Mardi</div>
-        <div>Mercredi</div>
-        <div>Jeudi</div>
-        <div>Vendredi</div>
-        <div class="inactive">Samedi</div>
-        <div class="inactive">Dimanche</div>
-    </div>
-
-    <div class="day-cell" data-day="Lundi"></div>
-    <div class="day-cell" data-day="Mardi"></div>
-    <div class="day-cell" data-day="Mercredi"></div>
-    <div class="day-cell" data-day="Jeudi"></div>
-    <div class="day-cell" data-day="Vendredi"></div>
-<div class="calendar mt-2">
-        <div class="day" id="Lundi"></div>
-        <div class="day" id="Mardi"></div>
-        <div class="day" id="Mercredi"></div>
-        <div class="day" id="Jeudi"></div>
-        <div class="day" id="Vendredi"></div>
-        <div class="day inactive" id="Samedi"></div>
-        <div class="day inactive" id="Dimanche"></div>
-    </div>
+ <div class="calendar-grid">
+  <!-- colonne des heures -->
+  <div class="time-col">
+    <div class="hour">09:00</div>
+    <div class="hour">10:00</div>
+    <div class="hour">11:00</div>
+    <div class="hour">12:00</div>
+    <div class="hour">13:00</div>
+    <div class="hour">14:00</div>
+    <div class="hour">15:00</div>
+    <div class="hour">16:00</div>
+    <div class="hour">17:00</div>
+    <div class="hour">18:00</div>
   </div>
 
+  <!-- colonnes des jours -->
+  <div class="days-grid">
+    <div class="day-header">Lundi</div>
+    <div class="day-header">Mardi</div>
+    <div class="day-header">Mercredi</div>
+    <div class="day-header">Jeudi</div>
+    <div class="day-header">Vendredi</div>
+    <div class="day-header inactive">Samedi</div>
+    <div class="day-header inactive">Dimanche</div>
 
-    
+    <!-- cellules vides pour les heures -->
+    <div class="day" id="Lundi"></div>
+    <div class="day" id="Mardi"></div>
+    <div class="day" id="Mercredi"></div>
+    <div class="day" id="Jeudi"></div>
+    <div class="day" id="Vendredi"></div>
+    <div class="day inactive" id="Samedi"></div>
+    <div class="day inactive" id="Dimanche"></div>
+  </div>
+</div>
+
+
     
 
 
@@ -88,7 +84,8 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom du client</label>
-                    <input type="text" class="form-control" id="name"  required>
+                    <input type="text" class="form-control" id="name" aria-describedby="error-editName" required>
+                    <span id="error-name" class="invalid-feedback"></span>
                 </div>
 
                 <div class="mb-3">
