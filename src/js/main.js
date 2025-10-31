@@ -1,18 +1,22 @@
 // ---  Déclaration des Modals Bootstrap ---
+
 const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
 const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
 const RechercheInput = document.getElementById('search');
 
 // --- Declaration des Formulaires ---
+
 const addForm = document.getElementById('form-reservation');
 const editForm = document.getElementById('editReservationForm');
 
 // --- Variables Globales ---
+
 let celluleSelectionnee = null;
 let ReservationSelectionne = null;
 let originalDebut = null; // Pour supprimer l'ancienne position si horaire modifié
 
 // --- Clic sur une cellule horaire active -> Ajout réservation ---
+
 document.querySelectorAll('.day-cell:not(.inactive)').forEach(cell => {
     cell.addEventListener('click', () => {
         celluleSelectionnee = cell;
