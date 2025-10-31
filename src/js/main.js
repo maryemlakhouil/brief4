@@ -69,7 +69,7 @@ function creerReservation(name, Debut, fin, personne, type) {
     const hauteur = (duree / 60) * 60;  // en pixels 
 
     reservation.style.height = `${hauteur}px`; // ajouter en fichier css 
-    reservation.innerHTML = `Nom
+    reservation.innerHTML = `Nom :
         <strong>${name}</strong><br>
         Date Reservation
         ${Debut} - ${fin}<br>
