@@ -35,7 +35,7 @@ addForm.addEventListener('submit', (e) => {
     const fin = document.getElementById('fin').value;
     const personne = document.getElementById('nbpersonne').value;
     const type = document.getElementById('typeReservation').value;
-
+    const day = celluleSelectionnee.dataset.day;
     if (!name || !Debut || !fin || !personne || !type) {
         alert("Veuillez remplir tous les champs svp !");
         return;
@@ -46,25 +46,18 @@ addForm.addEventListener('submit', (e) => {
         return;
     }
 
-    const reservationId = Date.now();
-    reservations.push({
-        id: reservationId,
-        name,
-        Debut,
-        fin,
-        personne,
-        type,
-        day: celluleSelectionnee.dataset.day
-    });
-    // Créer élément DOM
-    const reservation = creerReservation(name, Debut, fin, personne, type, reservationId);
-
-    placerReservation(reservation, celluleSelectionnee.dataset.day, Debut);
+     const reservation={
+    id: Date.now(),
+    name,Debut,fin,personne,type,
+    day
+};
+    reservations.push(reservation);
     addReservationToLocalStorage();
     afficherReservations();
-    addForm.reset();
     addModal.hide();
+    addForm.reset();
 });
+ 
 
 // --- Fonction qui crée une réservation ---
 
@@ -78,14 +71,10 @@ function creerReservation(name, Debut, fin, personne, type) {
     reservation.dataset.type = type;
     reservation.dataset.id = id;
 
-    function getMinutes(time) {
-        const [h, m] = time.split(":").map(Number);
-        return h * 60 + m;
-    }
-    const duree = getMinutes(fin) - getMinutes(Debut);
-    reservation.style.height = `${duree}px`;
+    const duree = (parseInt(fin) - parseInt(Debut)) * 60;
+    const hauteur = (duree / 60) * 60; 
     // ajouter en fichier css 
-
+    reservation.style.height = `${hauteur}px`;
     reservation.innerHTML = `Nom :
         <strong>${name}</strong><br>
         Date Reservation<br>
