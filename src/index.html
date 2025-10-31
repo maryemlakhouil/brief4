@@ -27,7 +27,8 @@
     <!--Les Jours Avec Samedi et dimenche sans inactive-->
 
     <div class="days-grid">
-        <div></div>            <!-- espace entre heurs et lindi -->
+        <!-- espace entre heurs et lindi -->
+        <div></div>
         <div class="day-header">Lundi</div>
         <div class="day-header">Mardi</div>
         <div class="day-header">Mercredi</div>
@@ -38,14 +39,13 @@
     </div>
 
     <div class="calendar-grid">
-        <!-- Génération auto 09h → 18h -->
-        <!-- Chaque ligne = 1 heure -->
+        <!-- Génération sway3  09h → 18h -->
         <!-- Col 1 = heure : col 2 à 8 = jours -->
         <script>
             const heures = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
             const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-
-            heures.forEach(h => {
+          //
+            heures.forEach(h => { 
                 document.write(`<div class='hour-col'>${h}</div>`);
                 jours.forEach(j => {
                     document.write(`<div class="day-cell ${j === "Samedi" || j === "Dimanche" ? "inactive" : ""}" data-day="${j}" data-hour="${h}"></div>`);
