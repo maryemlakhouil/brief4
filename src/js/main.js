@@ -97,16 +97,19 @@ function placerReservation(reservation, day, Debut) {
 
 // --- Ouverture modal d’édition ---
 
- function openEditModal(reservation) {
+    function openEditModal(reservation) {
         editModal.show();
         ReservationSelectionne = reservation;
+        originalDebut = reservation.dataset.debut;
+
         document.getElementById('ModifNon').value = reservation.dataset.name;
-        document.getElementById('editDebut').value = reservation.dataset.Debut;
+        document.getElementById('editDebut').value = reservation.dataset.debut;
         document.getElementById('editFin').value = reservation.dataset.fin;
         document.getElementById('editNbPersonne').value = reservation.dataset.personne;
-        document.getElementById('editTypeReservation').value =reservation.dataset.type;
+        document.getElementById('editTypeReservation').value = reservation.dataset.type;
     }
 // --- Sauvegarder modification ---
+
 
     editForm.addEventListener('submit', (e) => {
     e.preventDefault();
