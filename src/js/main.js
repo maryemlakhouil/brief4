@@ -137,16 +137,7 @@ document.getElementById('SupReservation').addEventListener('click', () => {
     }
    });
 
-// --- Rechercher une reservation ----- A completer 
-    RechercheInput.addEventListener("keyup", () => {
-        const terme = RechercheInput.value.toLowerCase();
-        const reservations = document.querySelectorAll(".reservation");
-
-        reservations.forEach(res => {
-            const text = res.textContent.toLowerCase();
-            res.style.display = text.includes(term) ? "block" : "none";
-        });
-    });
+ 
 
             
 
