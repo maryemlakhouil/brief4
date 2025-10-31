@@ -26,6 +26,7 @@ document.querySelectorAll('.day-cell:not(.inactive)').forEach(cell => {
 });
 
 // --- Ajouter une réservation ---
+ 
 addForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -41,7 +42,7 @@ addForm.addEventListener('submit', (e) => {
     }
 
     if (Debut >= fin) {
-        alert("L'heure de fin doit être supérieure à l'heure de début.");
+        alert(" Logique dit que L'heure de fin doit être supérieure à l'heure de début .");
         return;
     }
 
