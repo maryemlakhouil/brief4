@@ -12,10 +12,11 @@ body{
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* .calendar-grid {
-  display: grid;
-  grid-template-columns: 80px 1fr; /* 80px pour les heures + le reste pour les jours 
-} */
+ .calendar-grid {
+    width: 100%;
+    display: flex;
+ }
+
 .time-col {
   display: flex;
   flex-direction: column;
@@ -29,6 +30,7 @@ body{
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  width: 100%;
 }
 .day-header {
   height: 50px;
