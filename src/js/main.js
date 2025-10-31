@@ -137,7 +137,7 @@ document.getElementById('SupReservation').addEventListener('click', () => {
     }
    });
 
-// --- Rechercher une reservation -----
+// --- Rechercher une reservation ----- A completer 
     RechercheInput.addEventListener("keyup", () => {
         const terme = RechercheInput.value.toLowerCase();
         const reservations = document.querySelectorAll(".reservation");
