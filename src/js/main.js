@@ -71,7 +71,7 @@ function creerReservation(name, Debut, fin, personne, type) {
     reservation.style.height = `${hauteur}px`; // ajouter en fichier css 
     reservation.innerHTML = `Nom :
         <strong>${name}</strong><br>
-        Date Reservation
+        Date Reservation<br>
         ${Debut} - ${fin}<br>
         ${personne} personne.
     `;
@@ -105,9 +105,9 @@ function placerReservation(reservation, day, Debut) {
         document.getElementById('editFin').value = reservation.dataset.fin;
         document.getElementById('editNbPersonne').value = reservation.dataset.personne;
         document.getElementById('editTypeReservation').value =reservation.dataset.type;
-
     }
 // --- Sauvegarder modification ---
+
  editForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -118,7 +118,7 @@ function placerReservation(reservation, day, Debut) {
     ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
 
     ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-    ReservationSelectionne.innerHTML = `Noveau name
+    ReservationSelectionne.innerHTML = `Noveau name : 
         <strong>${ReservationSelectionne.dataset.name}</strong><br>
         ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
         ${ReservationSelectionne.dataset.personne} personne.
