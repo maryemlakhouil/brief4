@@ -42,7 +42,7 @@ addForm.addEventListener('submit', (e) => {
     }
 
     if (Debut >= fin) {
-        alert(" Logique dit que L'heure de fin doit être supérieure à l'heure de début .");
+        alert(" Logique dit que L'heure de fin doit être supérieure à  début !!!!!!");
         return;
     }
 
@@ -55,6 +55,7 @@ addForm.addEventListener('submit', (e) => {
 });
 
 // --- Fonction qui crée une réservation ---
+
 function creerReservation(name, Debut, fin, personne, type) {
     const reservation = document.createElement('div');
     reservation.className = `reservation ${type}`;
@@ -64,10 +65,10 @@ function creerReservation(name, Debut, fin, personne, type) {
     reservation.dataset.personne = personne;
     reservation.dataset.type = type;
 
-    const duree = (parseInt(fin) - parseInt(Debut)) * 60;
-    const hauteur = (duree / 60) * 60; 
+    const duree = (parseInt(fin) - parseInt(Debut)) * 60; // en minute 
+    const hauteur = (duree / 60) * 60;  // en pixels 
 
-    reservation.style.height = `${hauteur - 6}px`;
+    reservation.style.height = `${hauteur}px`; // ajouter en fichier css 
     reservation.innerHTML = `Nom
         <strong>${name}</strong><br>
         Date Reservation
@@ -96,46 +97,35 @@ function placerReservation(reservation, day, Debut) {
 
 // --- Ouverture modal d’édition ---
 
-function openEditModal(reservation) {
-    ReservationSelectionne = reservation;
-    originalDebut = reservation.dataset.debut;
+ function openEditModal(reservation) {
+        editModal.show();
+        ReservationSelectionne = reservation;
+        document.getElementById('ModifNon').value = reservation.dataset.name;
+        document.getElementById('editDebut').value = reservation.dataset.Debut;
+        document.getElementById('editFin').value = reservation.dataset.fin;
+        document.getElementById('editNbPersonne').value = reservation.dataset.personne;
+        document.getElementById('editTypeReservation').value =reservation.dataset.type;
 
-    document.getElementById('ModifNon').value = reservation.dataset.name;
-    document.getElementById('editDebut').value = reservation.dataset.debut;
-    document.getElementById('editFin').value = reservation.dataset.fin;
-    document.getElementById('editNbPersonne').value = reservation.dataset.personne;
-    document.getElementById('editTypeReservation').value = reservation.dataset.type;
-
-    editModal.show();
-}
-
+    }
 // --- Sauvegarder modification ---
-editForm.addEventListener('submit', (e) => {
+ editForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('ModifNon').value.trim();
-    const Debut = document.getElementById('editDebut').value;
-    const fin = document.getElementById('editFin').value;
-    const personne = document.getElementById('editNbPersonne').value;
-    const type = document.getElementById('editTypeReservation').value;
+    ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
+    ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
+    ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
+    ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
+    ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
 
-    if (Debut >= fin) {
-        alert("L'heure de fin doit être supérieure à l'heure de début.");
-        return;
-    }
-
-    ReservationSelectionne.remove();
-
-    const newRes = creerReservation(name, Debut, fin, personne, type);
-
-    placerReservation(
-        newRes,
-        ReservationSelectionne.parentNode.dataset.day,
-        Debut
-    );
+    ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
+    ReservationSelectionne.innerHTML = `Noveau name
+        <strong>${ReservationSelectionne.dataset.name}</strong><br>
+        ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
+        ${ReservationSelectionne.dataset.personne} personne.
+    `;
 
     editModal.hide();
-});
+    });
 
 // --- Supprimer réservation ---
 document.getElementById('SupReservation').addEventListener('click', () => {
