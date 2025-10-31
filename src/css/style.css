@@ -21,18 +21,7 @@ body{
     background: rgb(198, 216, 112);
     border-bottom: 2px solid #ddd;
 }
-
-.day-header {
-    padding: 10px;
-    border-right: 1px solid #ddd;
-}
-
-.day-header.inactive {
-    background: rgb(239, 245, 210);
-    color: #999;
-}
-
-/* Grille principale */
+/* Grille principale 10 * 7 */
 .calendar-grid {
     display: grid;
     grid-template-columns: 100px repeat(7, 1fr);
@@ -40,14 +29,21 @@ body{
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+/* Jours name */
+.day-header {
+    padding: 10px;
+    border-right: 1px solid #ddd;
+}
+.day-header.inactive {
+    background: rgb(239, 245, 210);
+    color: #999;
+}
 
 /* Colonne des heures */
 .hour-col {
-    background: #fff;
-    text-align: right;
-    padding-right: 8px;
-    font-size: 14px;
-    border-right: 1px solid #ddd;
+    background: whitesmoke;
+    text-align: center;
+    border: 1px solid #ddd;
     line-height: 60px;
 }
 
@@ -57,18 +53,16 @@ body{
     cursor: pointer;
     position: relative;
 }
-
-.day-cell:hover {
-    background: #edf6ff;
-}
-
-/* Week-end désactivé */
 .day-cell.inactive {
     background: #f4f4f4;
     pointer-events: none;
 }
+.day-cell:hover {
+    background: rgb(227, 239, 166);;
+}
 
 /* Réservations */
+
 .reservation {
     position: absolute;
     top: 3px;
@@ -84,6 +78,13 @@ body{
 }
 
 /* Couleurs selon le type */
-.reservation.standard  { background:#28a745; }
-.reservation.vip       { background:#d9534f; }
-.reservation.groupe    { background:#0275d8; }
+
+.reservation.standard  {
+    background:#3ff96b; 
+}
+.reservation.vip  { 
+    background:#f24f49;
+}
+.reservation.groupe  {
+    background:#6fb5f3;
+}
