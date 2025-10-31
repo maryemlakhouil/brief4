@@ -15,7 +15,6 @@ body{
 .calendar-grid {
   display: grid;
   grid-template-columns: 80px 1fr; /* 80px pour les heures + le reste pour les jours */
-  gap: 0;
 }
 .time-col {
   display: flex;
