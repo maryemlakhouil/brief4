@@ -27,20 +27,10 @@
 
 
   <!-- En-têtes des jours -->
-<div class="parent">
-    <div class="time-col">
-    <div class="hour">09:00</div>
-    <div class="hour">10:00</div>
-    <div class="hour">11:00</div>
-    <div class="hour">12:00</div>
-    <div class="hour">13:00</div>
-    <div class="hour">14:00</div>
-    <div class="hour">15:00</div>
-    <div class="hour">16:00</div>
-    <div class="hour">17:00</div>
-    <div class="hour">18:00</div>
-  </div>
-   <div class="days-grid">
+     
+<!-- Jours -->
+<div class="days-grid">
+    <div></div>
     <div class="day-header">Lundi</div>
     <div class="day-header">Mardi</div>
     <div class="day-header">Mercredi</div>
@@ -49,19 +39,24 @@
     <div class="day-header inactive">Samedi</div>
     <div class="day-header inactive">Dimanche</div>
 </div>
+
+<!-- Grille des heures -->
 <div class="calendar-grid">
+    <!-- Génération auto 09h → 18h -->
+    <!-- Chaque ligne = 1 heure -->
+    <!-- Col 1 = heure : col 2 à 8 = jours -->
+    <script>
+        const heures = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+        const jours = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
 
-   <div class="day" id="Lundi"></div>
-   <div class="day" id="Mardi"></div>
-   <div class="day" id="Mercredi"></div>
-   <div class="day" id="Jeudi"></div>
-   <div class="day" id="Vendredi"></div>
-   <div class="day inactive" id="Samedi"></div>
-   <div class="day inactive" id="Dimanche"></div>
+        heures.forEach(h=>{
+            document.write(`<div class='hour-col'>${h}</div>`);
+            jours.forEach(j=>{
+                document.write(`<div class="day-cell ${j==="Samedi"||j==="Dimanche"?"inactive":""}" data-day="${j}" data-hour="${h}"></div>`);
+            });
+        });
+    </script>
 </div>
-</div>
-
-
   <!-- Modal d’ajouter Une réservation  -->
 
     <div class="modal fade" id="AjoutReservation" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">

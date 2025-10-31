@@ -1,135 +1,141 @@
-// ---  Declaration des Modals Bootstrap ---
+// ---  Déclaration des Modals Bootstrap ---
+const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
+const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
+const RechercheInput = document.getElementById('search');
 
- const addModal = new bootstrap.Modal(document.getElementById('AjoutReservation'));
- const editModal = new bootstrap.Modal(document.getElementById('modifierReservation'));
- const RechercheInput = document.getElementById('search');
+// --- Declaration des Formulaires ---
+const addForm = document.getElementById('form-reservation');
+const editForm = document.getElementById('editReservationForm');
 
- // ---Declaration des  Formulaires ---
+// --- Variables Globales ---
+let celluleSelectionnee = null;
+let ReservationSelectionne = null;
+let originalDebut = null; // Pour supprimer l'ancienne position si horaire modifié
 
- const addForm = document.getElementById('form-reservation');
- const editForm = document.getElementById('editReservationForm');
+// --- Clic sur une cellule horaire active -> Ajout réservation ---
+document.querySelectorAll('.day-cell:not(.inactive)').forEach(cell => {
+    cell.addEventListener('click', () => {
+        celluleSelectionnee = cell;
+        document.getElementById('Debut').value = cell.dataset.hour;
+        document.getElementById('fin').value = cell.dataset.hour;
 
-
- // --- Variables globales ---
-
- let jourSelectionne = null;
- let ReservationSelectionne = null;
-
-// --- Sélection des jours actifs (Lundi - Vendredi) ---
-
- const days = document.querySelectorAll('.day:not(.inactive)');
-
-// --- Ouvrir le modal d’ajout sur clic d’un jour Sans utilisation de boutton ---
-
-days.forEach(day => {
-    day.addEventListener('click' , () =>{
-        jourSelectionne = day ;
         addModal.show();
     });
 });
- 
- // --- Remplire la form et  l'Envoi  du formulaire d’ajout ---
 
+// --- Ajouter une réservation ---
 addForm.addEventListener('submit', (e) => {
-   e.preventDefault(); // ----> annule l'événement s'il est annulable
+    e.preventDefault();
 
-   const name = document.getElementById('name').value.trim();
-   const Debut = document.getElementById('Debut').value;
-   const fin = document.getElementById('fin').value;
-   const personne = document.getElementById('nbpersonne').value;
-   const type = document.getElementById('typeReservation').value;
+    const name = document.getElementById('name').value.trim();
+    const Debut = document.getElementById('Debut').value;
+    const fin = document.getElementById('fin').value;
+    const personne = document.getElementById('nbpersonne').value;
+    const type = document.getElementById('typeReservation').value;
 
     if (!name || !Debut || !fin || !personne || !type) {
         alert("Veuillez remplir tous les champs svp !");
         return;
     }
 
-  // Création du bloc réservation (Affichage) 
-    // innerHTML = permet la manipulation dynamique du contenu HTML d'un élément.
+    if (Debut >= fin) {
+        alert("L'heure de fin doit être supérieure à l'heure de début.");
+        return;
+    }
 
-    const reservation = document.createElement('div');
-    reservation.classList.add('reservation', type);
-    reservation.innerHTML = `Nom :
-        <strong>${name}</strong><br>
-        Date Reservation :
-        ${Debut} - ${fin}<br>
-        Nombre de personne :${personne} .
-    `;
+    const reservation = creerReservation(name, Debut, fin, personne, type);
 
-  // Sauvegarde dans dataset 
+    placerReservation(reservation, celluleSelectionnee.dataset.day, Debut);
 
-  reservation.dataset.name = name;
-  reservation.dataset.Debut = Debut;
-  reservation.dataset.fin = fin;
-  reservation.dataset.personne = personne;
-  reservation.dataset.type = type;
-
-
-  // Clic sur la réservation → ouvrir le modal d'édition
-
-  reservation.addEventListener('click', (e) => {
-    e.stopPropagation(); // éviter de rouvrir le modal d’ajout parent 
-    openEditModal(reservation);
-  });
-
-  jourSelectionne.appendChild(reservation);
-  addForm.reset(); // Réinitialise les champs du formulaire addForm
-  addModal.hide(); // fermer la forme de l'ajout 
+    addForm.reset();
+    addModal.hide();
 });
 
- // --- Ouvrir le modal de modification avec les valeurs li 3amart fi ajout  ---
+// --- Fonction qui crée une réservation ---
+function creerReservation(name, Debut, fin, personne, type) {
+    const reservation = document.createElement('div');
+    reservation.className = `reservation ${type}`;
+    reservation.dataset.name = name;
+    reservation.dataset.debut = Debut;
+    reservation.dataset.fin = fin;
+    reservation.dataset.personne = personne;
+    reservation.dataset.type = type;
 
-    function openEditModal(reservation) {
-        editModal.show();
-        ReservationSelectionne = reservation;
-        document.getElementById('ModifNon').value = reservation.dataset.name;
-        document.getElementById('editDebut').value = reservation.dataset.Debut;
-        document.getElementById('editFin').value = reservation.dataset.fin;
-        document.getElementById('editNbPersonne').value = reservation.dataset.personne;
-        document.getElementById('editTypeReservation').value =reservation.dataset.type;
+    const duree = (parseInt(fin) - parseInt(Debut)) * 60;
+    const hauteur = (duree / 60) * 60; // 60px = slot 1h
 
-    }
-
-// --- Sauvgarder les modifications ------
-
-    editForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
-    ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
-    ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
-    ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
-    ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
-
-    ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-    ReservationSelectionne.innerHTML = `Noveau name
-        <strong>${ReservationSelectionne.dataset.name}</strong><br>
-        ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
-        ${ReservationSelectionne.dataset.personne} personne.
+    reservation.style.height = `${hauteur - 6}px`;
+    reservation.innerHTML = `
+        <strong>${name}</strong><br>
+        ${Debut} - ${fin}<br>
+        ${personne} pers.
     `;
 
-    editModal.hide();
+    reservation.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openEditModal(reservation);
     });
-    
-    // --- Suppremier une reservation ou bien annuller
 
-    document.getElementById('SupReservation').addEventListener('click', () => {
-    if (confirm("Voulez-vous vraiment supprimer cette réservation ?")) {
-            ReservationSelectionne.remove();
-            editModal.hide();
+    return reservation;
+}
+
+// --- Placer la réservation dans la bonne cellule ---
+function placerReservation(reservation, day, Debut) {
+    const target = [...document.querySelectorAll('.day-cell')]
+        .find(c => c.dataset.day === day && c.dataset.hour === Debut);
+
+    if (!target) return;
+
+    target.innerHTML = "";
+    target.appendChild(reservation);
+}
+
+// --- Ouverture modal d’édition ---
+function openEditModal(reservation) {
+    ReservationSelectionne = reservation;
+    originalDebut = reservation.dataset.debut;
+
+    document.getElementById('ModifNon').value = reservation.dataset.name;
+    document.getElementById('editDebut').value = reservation.dataset.debut;
+    document.getElementById('editFin').value = reservation.dataset.fin;
+    document.getElementById('editNbPersonne').value = reservation.dataset.personne;
+    document.getElementById('editTypeReservation').value = reservation.dataset.type;
+
+    editModal.show();
+}
+
+// --- Sauvegarder modification ---
+editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('ModifNon').value.trim();
+    const Debut = document.getElementById('editDebut').value;
+    const fin = document.getElementById('editFin').value;
+    const personne = document.getElementById('editNbPersonne').value;
+    const type = document.getElementById('editTypeReservation').value;
+
+    if (Debut >= fin) {
+        alert("L'heure de fin doit être supérieure à l'heure de début.");
+        return;
     }
-   });
 
-   // -- Recherche une reservation 
-   
-    // RechercheInput.addEventListener("keyup", () => {
-    //     const terme = RechercheInput.value.toLowerCase();
-    //     const reservations = document.querySelectorAll(".reservation");
+    ReservationSelectionne.remove();
 
-    //     reservations.forEach(res => {
-    //         const text = res.textContent.toLowerCase();
-    //         res.style.display = text.includes(term) ? "block" : "none";
-    //     });
-    // });
+    const newRes = creerReservation(name, Debut, fin, personne, type);
 
+    placerReservation(
+        newRes,
+        ReservationSelectionne.parentNode.dataset.day,
+        Debut
+    );
 
+    editModal.hide();
+});
+
+// --- Supprimer réservation ---
+document.getElementById('SupReservation').addEventListener('click', () => {
+    if (confirm("Supprimer la réservation ?")) {
+        ReservationSelectionne.remove();
+        editModal.hide();
+    }
+});

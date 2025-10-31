@@ -12,104 +12,78 @@ body{
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
- .calendar-grid {
-    width: 100%;
-    display: flex;
- }
-
-.time-col {
-  display: flex;
-  flex-direction: column;
-}
-.hour {
-  height: 60px; /* chaque créneau a la même hauteur */
-  line-height: 60px;
-  border-bottom: 1px solid #ddd;
-  padding-left: 5px;
-}
+/* Jours */
 .days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  width: 100%;
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    background: #f8f9fa;
+    border-bottom: 2px solid #ddd;
 }
+
 .day-header {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background-color: #c1f196;
-  border-bottom: 1px solid #ddd;
-  font-weight: bold;
-}
-.day {
-  height: 60px; /* correspond aux heures */
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  position: relative;
-}
-.day:hover {
-    background: hsl(80, 68%, 70%);
-    transform: scale(1.02);
+    padding: 10px;
+    border-right: 1px solid #ddd;
 }
 
-.inactive {
-    background-color: #f1f1f1;
-    color: #aaa;
+.day-header.inactive {
+    background: #eee;
+    color: #999;
+}
+
+/* Grille principale */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+    grid-auto-rows: 60px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Colonne des heures */
+.hour-col {
+    background: #fff;
+    text-align: right;
+    padding-right: 8px;
+    font-size: 14px;
+    border-right: 1px solid #ddd;
+    line-height: 60px;
+}
+
+/* Cellules */
+.day-cell {
+    border: 1px solid #eee;
+    cursor: pointer;
+    position: relative;
+}
+
+.day-cell:hover {
+    background: #edf6ff;
+}
+
+/* Week-end désactivé */
+.day-cell.inactive {
+    background: #f4f4f4;
     pointer-events: none;
 }
 
+/* Réservations */
 .reservation {
-    margin-top: 5px;
-    border-radius: 5px;
-    color: white;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    height: calc(100% - 6px);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.75rem;
     padding: 4px;
-    font-size: 0.85rem;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.reservation.vip {
-    background-color: #e5707b;
-} 
-.reservation.standard {
-    background-color: #1fe75e; 
-} 
-.reservation.groupe { 
-    background-color: #3a7ce0;
-} 
-
-#search {
-  border-radius: 6px;
-  border: 2px solid #5E8C31;
-  transition: 0.2s;
-}
-#search-btn {
-  border-radius: 6px;
-  border: 2px solid #5E8C31;
-  transition: 0.2s;
-}
-#search:focus {
-  box-shadow: 0 0 6px rgba(94, 140, 49, 0.5);
-  border-color: #3b5d24;
-}
-
-.Time {
-  display: grid;
-  background: white;
-  border-radius: 12px;
-  position: relative; /* corrigé */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin-top: 20px;
-}
-
-.day:hover {
-    background: hsl(80, 68%, 70%);
-    transform: scale(1.02);
-}
-
-.inactive {
-    background-color: #f1f1f1;
-    color: #aaa;
-    pointer-events: none;
-}
-.parent{
-    display: flex;
-}
+/* Couleurs selon le type */
+.reservation.standard  { background:#28a745; }
+.reservation.vip       { background:#d9534f; }
+.reservation.groupe    { background:#0275d8; }
