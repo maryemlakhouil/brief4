@@ -45,12 +45,19 @@ addForm.addEventListener('submit', (e) => {
         alert(" Logique dit que L'heure de fin doit être supérieure à  début !!!!!!");
         return;
     }
-   reservations.push({
-    id: Date.now(),
-    name,Debut,fin,personne,type,
-    day: celluleSelectionnee.dataset.day
-});
-    const reservation = creerReservation(name, Debut, fin, personne, type);
+    
+    const reservationId = Date.now();
+      reservations.push({
+        id: reservationId,
+        name,
+        Debut,
+        fin,
+        personne,
+        type,
+        day: celluleSelectionnee.dataset.day
+    });
+    // Créer élément DOM
+    const reservation = creerReservation(name, Debut, fin, personne, type, reservationId);
 
     placerReservation(reservation, celluleSelectionnee.dataset.day, Debut);
    addReservationToLocalStorage();
@@ -65,16 +72,20 @@ function creerReservation(name, Debut, fin, personne, type) {
     const reservation = document.createElement('div');
     reservation.className = `reservation ${type}`;
     reservation.dataset.name = name;
-    reservation.dataset.debut = Debut;
+    reservation.dataset.Debut = Debut;
     reservation.dataset.fin = fin;
     reservation.dataset.personne = personne;
     reservation.dataset.type = type;
-    reservation.dataset.id = Date.now();
+    reservation.dataset.id = id;
 
-    const duree = (parseInt(fin) - parseInt(Debut)) * 60; // en minute 
-    const hauteur = (duree / 60) * 60;  // en pixels 
-
-    reservation.style.height = `${hauteur}px`; // ajouter en fichier css 
+    function getMinutes(time) {
+        const [h, m] = time.split(":").map(Number);
+        return h * 60 + m;
+    }
+    const duree = getMinutes(fin) - getMinutes(Debut);
+    reservation.style.height = `${duree}px`;
+     // ajouter en fichier css 
+     
     reservation.innerHTML = `Nom :
         <strong>${name}</strong><br>
         Date Reservation<br>
