@@ -45,11 +45,16 @@ addForm.addEventListener('submit', (e) => {
         alert(" Logique dit que L'heure de fin doit être supérieure à  début !!!!!!");
         return;
     }
-
+   reservations.push({
+    id: Date.now(),
+    name,Debut,fin,personne,type,
+    day: celluleSelectionnee.dataset.day
+});
     const reservation = creerReservation(name, Debut, fin, personne, type);
 
     placerReservation(reservation, celluleSelectionnee.dataset.day, Debut);
-
+   addReservationToLocalStorage();
+    afficherReservations(); 
     addForm.reset();
     addModal.hide();
 });
@@ -64,6 +69,7 @@ function creerReservation(name, Debut, fin, personne, type) {
     reservation.dataset.fin = fin;
     reservation.dataset.personne = personne;
     reservation.dataset.type = type;
+    reservation.dataset.id = Date.now();
 
     const duree = (parseInt(fin) - parseInt(Debut)) * 60; // en minute 
     const hauteur = (duree / 60) * 60;  // en pixels 
@@ -112,34 +118,73 @@ function placerReservation(reservation, day, Debut) {
   
     editForm.addEventListener('submit', (e) => {
     e.preventDefault();
+     const id = Number(ReservationSelectionne.dataset.id);
+     const index = reservations.findIndex(r => r.id === id);
+    if (index === -1) return;
+    reservations[index].name = document.getElementById('ModifNon').value.trim();
+    reservations[index].Debut = document.getElementById('editDebut').value;
+    reservations[index].fin = document.getElementById('editFin').value;
+    reservations[index].personne = document.getElementById('editNbPersonne').value;
+    reservations[index].type = document.getElementById('editTypeReservation').value;
 
-    ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
-    ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
-    ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
-    ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
-    ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
-
-    ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-    ReservationSelectionne.innerHTML = `Noveau name
-        <strong>${ReservationSelectionne.dataset.name}</strong><br>
-        ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
-        ${ReservationSelectionne.dataset.personne} personne.
-    `;
+    addReservationToLocalStorage();
+    afficherReservations();
     editModal.hide();
     });
 
 // --- Supprimer réservation ---
 
-document.getElementById('SupReservation').addEventListener('click', () => {
-    if (confirm("Voulez-vous vraiment supprimer cette réservation ?")) {
-            ReservationSelectionne.remove();
-            editModal.hide();
-    }
-   });
+document.getElementById('SupReservation').addEventListener("click", () => {
+     if (!confirm("Voulez-vous vraiment supprimer cette réservation ?")) 
+        return;
+    const id = Number(ReservationSelectionne.dataset.id);
+    reservations = reservations.filter(r => r.id !== id);
+
+    addReservationToLocalStorage();
+    afficherReservations();
+    editModal.hide();
+});
+
 // -- Enregistrer les donnes "Local Storage"--- 
+let reservations = JSON.parse(localStorage.getItem("Reservations")) || [];
+// conversion tableau → texte
+function addReservationToLocalStorage() {
+    localStorage.setItem("Reservations", JSON.stringify(reservations));
+}
+ function afficherReservations() {
+    // supprimer affichage ancien
+    document.querySelectorAll(".reservation").forEach(el => el.remove());
 
+    reservations.forEach(item => {
+        const reservation = document.createElement("div");
+        reservation.classList.add("reservation", item.type);
 
- 
+        reservation.dataset.name = item.name;
+        reservation.dataset.Debut = item.Debut;
+        reservation.dataset.fin = item.fin;
+        reservation.dataset.personne = item.personne;
+        reservation.dataset.type = item.type;
+        reservation.dataset.id = item.id;
+
+        reservation.innerHTML = `
+            <strong>${item.name}</strong><br>
+            ${item.Debut} - ${item.fin}<br>
+            ${item.personne} personnes
+        `;
+
+        reservation.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openEditModal(reservation);
+        });
+
+        const target = document.querySelector(
+            `.day-cell[data-day="${item.day}"][data-hour="${item.Debut}"]`
+        );
+
+        if (target) target.appendChild(reservation);
+    });
+}
+window.onload = afficherReservations;
 
             
 
