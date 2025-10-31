@@ -15,14 +15,12 @@ let celluleSelectionnee = null;
 let ReservationSelectionne = null;
 let originalDebut = null; // Pour supprimer l'ancienne position si horaire modifié
 
-// --- Clic sur une cellule horaire active -> Ajout réservation ---
+// --- Clic sur une cellule horaire active -> Ajouter  ---
 
 document.querySelectorAll('.day-cell:not(.inactive)').forEach(cell => {
     cell.addEventListener('click', () => {
         celluleSelectionnee = cell;
         document.getElementById('Debut').value = cell.dataset.hour;
-        document.getElementById('fin').value = cell.dataset.hour;
-
         addModal.show();
     });
 });
