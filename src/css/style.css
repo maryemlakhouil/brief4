@@ -94,3 +94,27 @@ body {
 .reservation.groupe {
     background: #6fb5f3;
 }
+
+/* 📱 Responsive Design */
+
+@media (max-width: 992px) {
+    .days-grid,
+    .calendar-grid {
+        grid-template-columns: 60px repeat(7, 1fr); 
+    }
+
+    .hour-col {
+        font-size: 0.75rem;
+        line-height: 40px;
+    }
+
+    .day-header {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
+
+
+
+
+
