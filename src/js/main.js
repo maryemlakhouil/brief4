@@ -108,25 +108,32 @@ function placerReservation(reservation, day, Debut) {
     }
 // --- Sauvegarder modification ---
 
- editForm.addEventListener('submit', (e) => {
+    editForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    ReservationSelectionne.dataset.name = document.getElementById('ModifNon').value.trim();
-    ReservationSelectionne.dataset.Debut = document.getElementById('editDebut').value;
-    ReservationSelectionne.dataset.fin = document.getElementById('editFin').value;
-    ReservationSelectionne.dataset.personne = document.getElementById('editNbPersonne').value;
-    ReservationSelectionne.dataset.type = document.getElementById('editTypeReservation').value;
+    const name = document.getElementById('ModifNon').value.trim();
+    const Debut = document.getElementById('editDebut').value;
+    const fin = document.getElementById('editFin').value;
+    const personne = document.getElementById('editNbPersonne').value;
+    const type = document.getElementById('editTypeReservation').value;
 
-    ReservationSelectionne.className = `reservation ${ReservationSelectionne.dataset.type}`;
-    ReservationSelectionne.innerHTML = `Noveau name : 
-        <strong>${ReservationSelectionne.dataset.name}</strong><br>
-        ${ReservationSelectionne.dataset.Debut} - ${ReservationSelectionne.dataset.fin}<br>
-        ${ReservationSelectionne.dataset.personne} personne.
-    `;
+    if (Debut >= fin) {
+        alert("L'heure de fin doit être supérieure à l'heure de début.");
+        return;
+    }
+
+    ReservationSelectionne.remove();
+
+    const newRes = creerReservation(name, Debut, fin, personne, type);
+
+    placerReservation(
+        newRes,
+        ReservationSelectionne.parentNode.dataset.day,
+        Debut
+    );
 
     editModal.hide();
-    });
-
+});
 // --- Supprimer réservation ---
 document.getElementById('SupReservation').addEventListener('click', () => {
     if (confirm("Supprimer la réservation ?")) {
