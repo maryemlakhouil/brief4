@@ -136,6 +136,8 @@ document.getElementById('SupReservation').addEventListener('click', () => {
             editModal.hide();
     }
    });
+// -- Enregistrer les donnes "Local Storage"--- 
+
 
  
 
