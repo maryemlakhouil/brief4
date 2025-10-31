@@ -1,6 +1,5 @@
-
-body{
-    background-color:hsl(0, 0%, 98%);
+body {
+    background-color: hsl(0, 0%, 98%);
 }
 
 .ziti {
@@ -8,7 +7,7 @@ body{
     color: white;
     padding: 1rem;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Jours lundi -- Vendredi */
@@ -21,6 +20,7 @@ body{
     background: rgb(198, 216, 112);
     border-bottom: 2px solid #ddd;
 }
+
 /* Grille principale 10 * 7 */
 .calendar-grid {
     display: grid;
@@ -29,11 +29,13 @@ body{
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
 /* Jours name */
 .day-header {
     padding: 10px;
     border-right: 1px solid #ddd;
 }
+
 .day-header.inactive {
     background: rgb(239, 245, 210);
     color: #999;
@@ -53,12 +55,15 @@ body{
     cursor: pointer;
     position: relative;
 }
+
 .day-cell.inactive {
     background: #f4f4f4;
     pointer-events: none;
 }
+
 .day-cell:hover {
-    background: rgb(227, 239, 166);;
+    background: rgb(227, 239, 166);
+    ;
 }
 
 /* Réservations */
@@ -78,12 +83,14 @@ body{
 
 /* Couleurs selon le type */
 
-.reservation.standard  {
-    background:#3ff96b; 
+.reservation.standard {
+    background: #3ff96b;
 }
-.reservation.vip  { 
-    background:#f24f49;
+
+.reservation.vip {
+    background: #f24f49;
 }
-.reservation.groupe  {
-    background:#6fb5f3;
+
+.reservation.groupe {
+    background: #6fb5f3;
 }

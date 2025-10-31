@@ -26,7 +26,7 @@ document.querySelectorAll('.day-cell:not(.inactive)').forEach(cell => {
 });
 
 // --- Ajouter une réservation ---
- 
+
 addForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -45,9 +45,9 @@ addForm.addEventListener('submit', (e) => {
         alert(" Logique dit que L'heure de fin doit être supérieure à  début !!!!!!");
         return;
     }
-    
+
     const reservationId = Date.now();
-      reservations.push({
+    reservations.push({
         id: reservationId,
         name,
         Debut,
@@ -60,8 +60,8 @@ addForm.addEventListener('submit', (e) => {
     const reservation = creerReservation(name, Debut, fin, personne, type, reservationId);
 
     placerReservation(reservation, celluleSelectionnee.dataset.day, Debut);
-   addReservationToLocalStorage();
-    afficherReservations(); 
+    addReservationToLocalStorage();
+    afficherReservations();
     addForm.reset();
     addModal.hide();
 });
@@ -84,8 +84,8 @@ function creerReservation(name, Debut, fin, personne, type) {
     }
     const duree = getMinutes(fin) - getMinutes(Debut);
     reservation.style.height = `${duree}px`;
-     // ajouter en fichier css 
-     
+    // ajouter en fichier css 
+
     reservation.innerHTML = `Nom :
         <strong>${name}</strong><br>
         Date Reservation<br>
@@ -105,7 +105,7 @@ function creerReservation(name, Debut, fin, personne, type) {
 
 function placerReservation(reservation, day, Debut) {
     const target = [...document.querySelectorAll('.day-cell')]
-    //transformer  l tableau bach n9dero nsta3mlo .find()
+        //transformer  l tableau bach n9dero nsta3mlo .find()
         .find(c => c.dataset.day === day && c.dataset.hour === Debut);
     if (!target) return;
     target.innerHTML = "";
@@ -114,23 +114,23 @@ function placerReservation(reservation, day, Debut) {
 
 // --- Ouverture modal d’édition ---
 
-    function openEditModal(reservation) {
-        editModal.show();
-        ReservationSelectionne = reservation;
-        originalDebut = reservation.dataset.debut;
+function openEditModal(reservation) {
+    editModal.show();
+    ReservationSelectionne = reservation;
+    originalDebut = reservation.dataset.debut;
 
-        document.getElementById('ModifNon').value = reservation.dataset.name;
-        document.getElementById('editDebut').value = reservation.dataset.debut;
-        document.getElementById('editFin').value = reservation.dataset.fin;
-        document.getElementById('editNbPersonne').value = reservation.dataset.personne;
-        document.getElementById('editTypeReservation').value = reservation.dataset.type;
-    }
+    document.getElementById('ModifNon').value = reservation.dataset.name;
+    document.getElementById('editDebut').value = reservation.dataset.debut;
+    document.getElementById('editFin').value = reservation.dataset.fin;
+    document.getElementById('editNbPersonne').value = reservation.dataset.personne;
+    document.getElementById('editTypeReservation').value = reservation.dataset.type;
+}
 // --- Sauvegarder modification ---
-  
-    editForm.addEventListener('submit', (e) => {
+
+editForm.addEventListener('submit', (e) => {
     e.preventDefault();
-     const id = Number(ReservationSelectionne.dataset.id);
-     const index = reservations.findIndex(r => r.id === id);
+    const id = Number(ReservationSelectionne.dataset.id);
+    const index = reservations.findIndex(r => r.id === id);
     if (index === -1) return;
     reservations[index].name = document.getElementById('ModifNon').value.trim();
     reservations[index].Debut = document.getElementById('editDebut').value;
@@ -141,12 +141,12 @@ function placerReservation(reservation, day, Debut) {
     addReservationToLocalStorage();
     afficherReservations();
     editModal.hide();
-    });
+});
 
 // --- Supprimer réservation ---
 
 document.getElementById('SupReservation').addEventListener("click", () => {
-     if (!confirm("Voulez-vous vraiment supprimer cette réservation ?")) 
+    if (!confirm("Voulez-vous vraiment supprimer cette réservation ?"))
         return;
     const id = Number(ReservationSelectionne.dataset.id);
     reservations = reservations.filter(r => r.id !== id);
@@ -162,7 +162,7 @@ let reservations = JSON.parse(localStorage.getItem("Reservations")) || [];
 function addReservationToLocalStorage() {
     localStorage.setItem("Reservations", JSON.stringify(reservations));
 }
- function afficherReservations() {
+function afficherReservations() {
     // supprimer affichage ancien
     document.querySelectorAll(".reservation").forEach(el => el.remove());
 
@@ -197,5 +197,5 @@ function addReservationToLocalStorage() {
 }
 window.onload = afficherReservations;
 
-            
+
 
