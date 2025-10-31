@@ -65,13 +65,14 @@ function creerReservation(name, Debut, fin, personne, type) {
     reservation.dataset.type = type;
 
     const duree = (parseInt(fin) - parseInt(Debut)) * 60;
-    const hauteur = (duree / 60) * 60; // 60px = slot 1h
+    const hauteur = (duree / 60) * 60; 
 
     reservation.style.height = `${hauteur - 6}px`;
-    reservation.innerHTML = `
+    reservation.innerHTML = `Nom
         <strong>${name}</strong><br>
+        Date Reservation
         ${Debut} - ${fin}<br>
-        ${personne} pers.
+        ${personne} personne.
     `;
 
     reservation.addEventListener('click', (e) => {
@@ -83,17 +84,18 @@ function creerReservation(name, Debut, fin, personne, type) {
 }
 
 // --- Placer la réservation dans la bonne cellule ---
+
 function placerReservation(reservation, day, Debut) {
     const target = [...document.querySelectorAll('.day-cell')]
+    //transformer  l tableau bach n9dero nsta3mlo .find()
         .find(c => c.dataset.day === day && c.dataset.hour === Debut);
-
     if (!target) return;
-
     target.innerHTML = "";
     target.appendChild(reservation);
 }
 
 // --- Ouverture modal d’édition ---
+
 function openEditModal(reservation) {
     ReservationSelectionne = reservation;
     originalDebut = reservation.dataset.debut;
